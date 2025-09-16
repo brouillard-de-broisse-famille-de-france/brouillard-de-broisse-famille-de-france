@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+ <meta name="viewport" content="width=1024">
+
+
+  <title>Brouillard de Broisse</title>
+  <meta name="description" content="La famille Brouillard de Broisse est issue de la Bretagne du XVe siècle et tire son nom du fief de Broisse situé en Ille-et-Vilaine.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      background-image: url('parchemin.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center center;
+      background-repeat: no-repeat;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .frise-pattern {
+      width: 100%;
+      height: 250px;
+      background-image: url('pattern.png');
+      background-repeat: repeat-x;
+      background-position: center top;
+      background-size: auto 100%;
+      border-top: 4px solid #5b3a29;
+      border-bottom: 4px solid #a9744a;
+    }
+
+    .header-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 40px 20px;
+      align-items: flex-start;
+      gap: 40px;
+      position: relative;
+    }
+
+    .title-section {
+      flex-grow: 1;
+      padding-right: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .title-section h1 {
+      font-size: 2.8em;
+      margin: 0;
+      line-height: 1.25;
+      font-weight: 600;
+      color: #222;
+    }
+
+  /* === Menu horizontal === */
+.menu-horizontal {
+  position: fixed;
+  bottom: 0.5cm;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 600;
+  color: #4d2d1d;
+  flex-wrap: nowrap;
+  z-index: 10;
+  cursor: zoom-in !important;
+  user-select: none;
+  font-size: 1.05em;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: none;
+}
+
+.menu-horizontal a {
+  text-decoration: none;
+  color: #4d2d1d;
+  padding: 0;
+  border: none;
+  font-weight: 600;
+  background: none;
+  cursor: zoom-in !important;
+  user-select: none;
+  font-size: 1em;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.menu-horizontal a:hover {
+  color: #a9744a;
+}
+
+/* === Masquage sur tablette et mobile === */
+@media screen and (max-width: 1024px) {
+  .menu-horizontal {
+    display: none !important;
+  }
+}
+
+/* === Affichage sur PC uniquement === */
+@media screen and (min-width: 1025px) {
+  .menu-horizontal {
+    display: flex !important;
+  }
+}
+
+
+    .blason-section {
+      width: 297px;
+      background-color: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      font-family: Arial, sans-serif;
+      font-size: 1.1em;
+      color: #000;
+      line-height: 1.8;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      padding: 0.5mm 3mm;
+      margin-left: auto;
+      margin-top: 30px;
+      flex-shrink: 0;
+    }
+
+    .blason-section .title {
+      background-color: #d4dbea;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.6em;
+      margin: 1mm;
+      padding: 6px 0;
+      border: 1px solid #a2a9b1;
+      color: #000;
+    }
+
+    .blason-section img {
+      display: block;
+      margin: 10px auto 4px auto;
+      width: 220px;
+      height: auto;
+      border: 1px solid #444;
+    }
+
+    .blason-section .caption-armes {
+      text-align: center;
+      margin-bottom: 6px;
+      color: #000;
+    }
+
+    .blason-section table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .blason-section td.label {
+      font-weight: bold;
+      width: 40%;
+      vertical-align: top;
+      padding: 6px 4px 6px 0;
+    }
+
+    .blason-section td.blasonnement,
+    .blason-section td.devise {
+      color: blue;
+    }
+
+    .blason-section td {
+      padding: 6px 0;
+    }
+
+    main.content-section {
+      max-width: 900px;
+      margin: 40px auto 80px auto;
+      padding: 0 20px;
+      background-color: rgba(255,255,255,0.85);
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 1.6em;
+      color: #444;
+      border-bottom: 2px solid #000;
+      padding-bottom: 6px;
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
+
+    img.private-blason,
+    img.acte-image {
+      display: block;
+      margin: 30px auto 5px auto;
+      width: 40%;
+      height: auto;
+      border: 1px solid #333;
+      box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1);
+      transform-origin: center center;
+    }
+
+    .zoom-only, .zoom-clickable {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .zoom-only { cursor: zoom-in !important; }
+    .zoom-only:hover { transform: scale(1.0); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+    .zoom-clickable { cursor: zoom-in !important; }
+    .zoom-clickable:hover { transform: scale(1.5); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+
+    .caption { text-align: center; font-size: 0.9em; color: #666; margin-bottom: 30px; }
+
+    #btn-top {
+      position: fixed;
+      bottom: calc(2cm + 80px);
+      left: 0;
+      transform: translateX(calc(-10% + 20px));
+      background: none;
+      border: none;
+      font-size: 2em;
+      cursor: pointer !important;
+      z-index: 11;
+      color: #4d2d1d;
+      transition: opacity 0.5s ease;
+      outline: none;
+      user-select: none;
+    }
+
+    #btn-top:hover { color: #a9744a; }
+    .ref-link { color: #0645ad; text-decoration: none; font-weight: normal; }
+    #collection-privee { cursor: default !important; }
+/* === Responsive pour mobiles === */
+/* === Responsive pour mobiles === */
+/* === Responsive pour mobiles === */
+@media screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px 30px 10px;
+    gap: 20px;
+  }
+
+  .title-section {
+    text-align: center;
+    width: 95%;
+    margin-top: 10px;
+  }
+
+  .blason-section {
+    margin: 20px 0 30px 0;
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .menu-horizontal {
+    position: fixed !important;      /* fixe les boutons */
+    top: 500px !important;           /* règle la hauteur manuellement */
+bottom: auto !important;  /* neutralise le bottom du desktop */
+
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.9); /* optionnel */
+    z-index: 20;
+  }
+
+  img.private-blason,
+  img.acte-image {
+    width: 90%;
+    height: auto;
+  }
+
+  main.content-section {
+    width: 90%;
+    margin: 30px auto;
+  }
+
+  .title-section h1 {
+    font-size: 3.8em !important;
+    line-height: 1.2;
+    max-width: 100%;
+    word-break: normal;
+    text-align: center;
+  }
+}
+
+
+ </style>
+</head>
+<body>
+
+<div class="frise-pattern"></div>
+<header class="header-container">
+ <div class="title-section" id="title-section">
+  <h1>
+    La seigneurie de Broisse à travers l’histoire des<br>
+    Brouillard de la fin du XVe siècle à nos jours
+  </h1>
+  <nav class="menu-horizontal" id="menu">
+    <a href="#nom-statut" data-target="nom-statut">Armoiries collection privée</a>
+    <a href="#acte" data-target="acte">Acte de chancellerie</a>
+    <a href="#realites-feodalites" data-target="realites-feodalites">Article de presse</a>
+    <a href="#genealogie-agnatique" data-target="genealogie-agnatique">Généalogie agnatique</a>
+  </nav>
+</div>
+
+<aside class="blason-section">
+  <div class="title">Famille Brouillard</div>
+  <img src="blason.png" alt="Blason Brouillard de Broisse" id="collection-privee"/>
+  <div class="caption-armes">Armes</div>
+  <hr style="border:none; border-top:3px solid #888; margin:6px 0;" />
+
+  <table>
+    <tr><td class="label blasonnement">Blasonnement</td><td style="padding-left: 10px;">d’argent au chevron d’azur</td></tr>
+    <tr><td class="label devise">Devise</td><td style="padding-left: 10px;"><em>in saecula saeculorum</em> <span style="font-size: 0.85em; color: #555;">(devise récente)</span></td></tr>
+    <tr><td class="label">Branche aînée</td><td style="padding-left: 10px;">Benjamin Léandre</td></tr>
+    <tr><td class="label">Branche cadette</td><td style="padding-left: 10px;">Philbert Renaud</td></tr>
+    <tr><td class="label">Période</td><td style="padding-left: 10px;">XV<sup>e</sup> – XXI<sup>e</sup> siècle</td></tr>
+    <tr><td class="label">Province d’origine</td><td style="padding-left: 10px;">Bretagne</td></tr>
+    <tr><td class="label">Fonction</td><td style="padding-left: 10px;">Seigneurs de Broisse (Feins, Ille-et-Vilaine)</td></tr>
+  </table>
+</aside>
+
+<style>
+.title-section h1 {
+  font-size: 2.8em;        /* taille légèrement réduite pour tenir sur deux lignes */
+  line-height: 1.25;       /* espacement vertical agréable */
+  margin: 0;
+  font-weight: 600;
+  color: #222;
+  text-align: center;       /* centrer le texte */
+  word-break: normal;       /* éviter le retour automatique non désiré */
+}
+</style>
+
+</header>
+
+
+
+<main class="content-section">
+  <!-- Contenus fusionnés du second fichier -->
+  <section id="nom-statut">
+    <h2>Nom et acquisition du statut</h2>
+    <!-- Texte intégral du second fichier -->
+    <p>L’origine du nom Brouillard n’est pas liée à la météorologie mais dérive d’un mot gaulois, <em>broglie</em>, désignant un bois clos ou un domaine enclavé. De cette racine sont issus plusieurs noms de familles françaises, dont la maison de Broglie, les Brouillard et autre dérivés tels que Breuil.</p>
+
+  <p>La première mention archivée des Brouillard de Broisse figure dans un procès-verbal de 1648 pour le présidial de Rennes : Benjamin Léandre Brouillard. Il s'agit du premier seigneur de Broisse qu'on identifie nommément, mais vraisemblablement pas du premier de la lignée. Né probablement vers 1520, soit 32 ans après la bataille qui opposa les troupes du duc de Bretagne, François II, à celles du roi de France, Charles VIII, soutenues par la Ligue de Bretagne. La défaite du duc marqua la fin de la résistance bretonne à l’autorité royale lors de l'ultime bataille de Saint-Aubin-du-Cormier en l'an 1488.</p>
+
+  <p>Le statut révélé du fief de Broisse dans le document de 1648 (soumis à un cens fixe et non dépendant des revenus seigneuriaux) le désigne comme issu d'une récompense. Les dons de fiefs (<em>beneficium</em>) résultaient généralement de bravoures particulières, au combat par exemple, ou d'importants services rendus (beaucoup plus rare). Les anoblissements et gratifications de fiefs par charge ou par fonction nécessitaient d'occuper au préalable de telles fonctions – chirurgien, notaire ou ecclésiastique – mais aucune trace de l'occupation de ces fonctions n'est documentée dans le cas des Brouillard de cette lignée bretonne, il faut donc exclure la prise de fonction de ces terres seigneuriales de part cette voie. Il est donc légitime de penser que ce fût la résultante d’un acte de bravoure au combat (on parlait alors de vertus d'armes) amenant au fameux <em>beneficium</em>. On le comprend facilement, une telle gratification ne peut être qu'antérieure à la défaite du duché, guerre pour laquelle naturellement aucun combattant défenseur de l'indépendance bretonne face à la couronne de France, n'aura été récompensé par Charles VIII, roi belligérant et vainqueur du conflit. Le fief de Broisse serait donc dans la famille des Brouillard de cette extraction depuis la fin du XV<sup>e</sup> siècle, au plus tard en 1488.</p>
+
+  <p>Réalité sociale et historique méconnue du XIII<sup>e</sup> au XVII<sup>e</sup> siècle, la frontière entre les nobliaux de campagne et les seigneurs roturiers était floue. En effet ces derniers constituaient une catégorie marginale, hors des grandes logiques féodales, mais exerçaient un pouvoir bien réel, administrant leurs terres et leurs gens autour de leurs hébergements (nom désignant les maisons fortes ou manoirs dans la Bretagne féodale). Leur autorité relative s'appuyait sur la légitimité du pouvoir qui leur avait été confié, symbolisé par leurs armes en l'occurence  «d'argent au chevron d'azur»  pour les Brouillard de Broisse<a href="#ref1" id="ref1-link" class="ref-link">[1]</a>, sans en posséder les pleins droits féodaux.</p>
+    <img src="collectionprivee.png" 
+     alt="Blason peint de la famille (collection privée)" 
+     class="private-blason zoom-only" 
+     id="collection-privee" />
+
+    <p class="caption">(collection privée)</p>
+<p>De fait, ce statut intermédiaire était surtout un processus lent appelé "anoblissement par tierce foi" <a href="#ref2" id="ref2-link" class="ref-link">[2]</a>. Les seigneurs administrateurs de leurs fiefs pouvaient conserver ce statut sur deux ou trois générations avant l'aboutissement du parcours d'anoblissement, ou être interrompus en cours, comme ce fut le cas pour la branche : « Philbert Renaud Brouillard, seigneur de Vallière de laditte terre de Broisse » cf.acte de Chancellerie.</p>
+
+  <p>Les seigneurs roturiers bénéficiaient néanmoins de certains privilèges seigneuriaux. Leur pouvoir n’était pas absolu, mais relatif : ils pouvaient exercer le droit banal, c’est-à-dire rendre justice sur leurs terres, juger les larcins, le braconnage ou des différends mineurs. Certains allaient jusqu’à édicter des règles locales, sous le contrôle de leur suzerain.</p>
+
+  <p>Même seigneur de son fief, le rapport de vassalité qui le liait à son suzerain était régi par des accords précis. « L'hommage et la foi » - serment solennel par lequel le nouveau seigneur d'un fief jurait fidélité et services à son suzerain - était le lien sacré qui constituait le socle de leur relation féodale de vassalité-suzeraineté. Puis venaient les services à proprement parler. Tout d'abord l'ost, c'est à dire l'obligation militaire pour le seigneur lui-même -une quarantaine de jours par an- et pour les hommes de ses terres en cas de guerre. Il est à noter que ce service d'ost pouvait être commué en argent, on appelait cette conversion : écuage. Bien entendu, le seigneur devait la gratuité du passage du suzerain sur ses terres. Puis, en fonction du type de fief, le paiement du cens était aussi une obligation contractuelle. Le fief de Broisse était concerné par cette obligation. Pour ce qui est des Sieurs de Vallière (tenure du fief de Broisse), ils devaient s’acquitter de la somme de 81 livres et 25 sols, versée à leur suzerain, le baron de Prédaillec.</p>
+  </section>
+
+  <section id="acte">
+    <h2>Transcription de l’acte de chancellerie de 1648</h2>
+    <p>
+Entre Dame Elisabeth de Verneuil, veufiée de Messire Henry Paul d'Enfroyde, Chevalier Baron de Prédaillec comme Messire Jean de Verneuil son père, demanderesse aux fins du bail affermé et soumis à cens du fief de Vallière, de la noble terre de Broisse de la baronnie de Prédaillec d'une part.<br>
+Et Messire Philbert Renaud Brouillard, seigneur de Vallière de laditte terre de Broisse, deffendeur audit bail d'autre.<br>
+Vu la transaction moult fois renouvelée entre Cyril Paul d'Enfroyde, Chevalier Baron de Prédaillec père dudit Henry Paul d'Enfroyde, Chevalier Baron de Prédaillec, mari de la demanderesse d'une part et Benjamin Léandre Brouillard, honorable seigneur de la terre de Broisse père dudit Philbert Renaud seigneur de Vallière deffendeur d'autre, signé Marchaud notaire royal par laquelle transaction lesdits Sieurs de Vallière de la terre de Broisse de la baronnie de Prédaillec s'obligent à payer auxdits Sieurs de Prédaillec la somme de 81 livres & 25 sols à la signature des baux pour le cens du fief : l'hébergement et sa tour ronde flanquée à 35 l. [livres], l'usage des meubles de la grande salle et des pentes à domestiques à 2 l. & 25 sols, le colombier, l'étan, les rabines et les bois sur 210 arpents dont 300 perches labourables à 44 livres.<br>
+Sommation faicte l'onzier décembre dernier au Comʳᵉ [commissaire] G [Général] du présent siège à la requête de laditte Dame demanderesse signifiée le vingt & huit 9embre [novembre] de faire diligence pour le bail de laditte terre de Vallière par Duffon huissier. Assignation donnée en conséquence à la requête dudit Comʳᵉ G tant à laditte Dame Elisabeth qu'audit deffendeur du bail, ensuivant par ledit Duffon requête de laditte Dame demanderesse signifiée le vingt & huit 9embre dernier.<br>
+Nous avons octroyé acte à laditte Dame demanderesse de la déclaration faicte par le Sieur de Vallière, qu'il recognoist lui estre redevable de la somme de 150 livres et en conséquence, ordonnons qu'il soyt minutieusement procédé au recensement des fruits et rentes du présent bail de laditte terre de Broisse, distinction faite préalablement des deux tiers d'icelle en faveur du Sieur Brouillard Louis Anthoine, Sr de la Lande d’Amaury, mouvance de la terre de Broisse de la baronnie de Prédaillec, aisné du deffendeur conformément aux précédents baux.<br>
+Faict par nous François Prin comʳᵉ du Roy lieutenant particulier au Présidial de Rennes. Vacquant ce neufième de février de l'an Mil Six Cent Quarante & huit. [Signature] Prin
+</p>
+
+    <a href="acte-de-chancellerie.jpg" target="_blank">
+      <img src="acte-de-chancellerie.jpg" alt="Acte de chancellerie de 1648" class="acte-image zoom-clickable" id="acte-photo" />
+    </a>
+  </section>
+
+   <section id="realites-feodalites">
+    <h2>Réalités terre-à-terre des petites féodalités</h2>
+    <p>Dans la France rurale de la fin Moyen-âge-début Renaissance, les hobereaux et petits seigneurs campagnards sont ancrés dans le sol des fiefs dont ils ont la charge (voir l’Écho des Arènes printemps 2000). Grâce à l'acte de 1648 recensant les fruits et rentes du fief de Vallière, on connaît la surface que celui-ci couvrait soit environ : 210 arpents selon la mesure bretonne du XVII<sup>e</sup> siècle. Ce fief de Vallière occupait un tiers seulement du domaine de Broisse, le fief de la Lande d'Amaury quant à lui occupait les deux tiers restants. Les revenus générés par les surfaces dont on connaît les mesures assuraient un certain train de vie. Toutefois, le travail ne manquait pas sur ces terres et le sol était une perpétuelle préoccupation pour les seigneurs comme pour les vilains.</p>
+    <a href="articlerecadré.JPG" target="_blank">
+      <img src="articlerecadré.JPG" alt="Article L'Echo des Arènes sur les petits seigneurs" class="acte-image zoom-clickable" />
+    </a>
+  </section>
+
+  <!-- Début de l'insertion du second fichier -->
+  <section id="situation-geopolitique">
+    <h2>Situation géopolitique du fief de Broisse jusqu'à la fin du XV<sup>e</sup> siècle</h2>
+
+    <p>Situé sur les « marches », zone tampon entre le duché de Bretagne et le royaume de France, le fief de Broisse se trouvait dans une région exposée aux incursions ennemies. Dans ce contexte, les seigneurs des marches participaient à un dispositif défensif coordonné : chacun, selon l’étendue de ses ressources, devait fournir un contingent d’hommes armés.</p>
+
+    <p>Les grands seigneurs contrôlaient généralement des châteaux-forts ou des places stratégiques, véritables pivots de la défense. Les petits seigneurs, eux, assumaient des responsabilités plus locales : surveiller une route ou la traversée d'une forêt, protéger un passage à gué, participer aux patrouilles et se rassembler en cas d’alerte pour défendre la frontière.</p>
+
+    <p>La position avancée de ces seigneurs — premiers remparts face à l’ennemi français — leur conférait certaines prérogatives supplémentaires par rapport aux tenanciers de fiefs moins exposés, car plus reculés dans les terres. Tout cela s’inscrivait dans un système de mouvance et d’obligations militaires régulé par le suzerain. Les revenus fonciers déterminaient les capacités militaires, permettant d’acquérir armes, protections et autres équipements nécessaires pour répondre aux obligations d’ost.</p>
+
+    <p>Le post universitaire (issu de Moodle) de Didier Méhu explique parfaitement ce particularisme des petites seigneuries des marches de Bretagne, véritables essaims de forces légères, mobiles et furtives. <a href="https://mehude327e69f7d-tplex.wordpress.com/#:~:text=Un%20acte%20de%20chancellerie%20ordonn%C3%A9%20pour%20le%20Pr%C3%A9sidial%20de%20Rennes%20et%20conserv%C3%A9%20aux%20Archives%20d%C3%A9partementales%20d%E2%80%99Ille%2Det%2DVilaine%2C%20renseigne%20sur%20la%20seigneurie%20de%20Valli%C3%A8re%20(mouvance%20du%20fief%20de%20Broisse)%20et%20illustre%20des%20pratiques%20applicables%20%C3%A0%20l%E2%80%99ensemble%20des%20fiefs%20de%20cette%20taille." target="_blank">Lire l'article</a></p><section id="decheance-statut">
+  <h2>Déchéance du statut</h2>
+
+ <p>Les Brouillard de cette lignée dirigèrent ce fief de l'est breton durant environ 160 ans. En effet, l’administration du fief de Broisse par cette branche s’interrompt brutalement en 1648 à la suite des arrérages (arriérés) qui conduisirent Élisabeth de Verneuil (Buzançais), veuve du baron de Prédaillec, à une injonction puis à un recours administratif entraînant un "recensement des fruits et rentes" du fief de Vallière puis à sa saisie féodale <a href="#note3" id="ref3-link" class="ref-link">[3]</a>. (C 6038 recours administratifs des fiefs et francs fiefs série H « Clergé régulier » ARCHIVI. HIC. MS. FINITUR)</p>
+
+  <p>Le fils de Philbert, Jehan Renaud, né sous Louis XIII, ne fut jamais appelé seigneur de Vallière sur aucun acte. Il avait 7 ans quand son père fut déchu de son fief, à l'âge de 29 ans seulement.</p>
+    
+  <p>C'est en Écosse que la biographie de Philbert continue. Cette expatriation plus ou moins consentie est attestée par sa descendance. En effet, son fils Jehan Renaud y fera naître trois de ses quatre enfants : Estienne, Judith et Mylène, nés à Kilmarnock. Le retour en France se fera à cette génération puisque leur dernier enfant, Magdelaine, naquit à Paris. 
+  Jehan Renaud (vraisemblablement accompagné de son père Philbert le seigneur déchu) vécut donc en Écosse pendant 27 ans avant le retour en France.</p>
+
+  <h2>Hypothèses</h2>
+
+  <p>La biographie de Louis Anthoine Brouillard, seigneur de la lande d'Amaury et frère aîné de Philbert, est pour ainsi dire inconnue. Il ne fut pas inquiété dans la procédure de saisie féodale. Cette branche aînée s'est éteinte sans remous. Un examen rapide de la lignée globale jusqu'à notre époque moderne met en lumière la faible proportion d'enfants mâles, ce qui étaye l’hypothèse de l'extinction de cette lignée.</p>
+
+  <p>Nous ne connaissons pas la raison pour laquelle Philbert Renaud manqua à son devoir de paiement du cens auprès du baron de Prédaillec. En effet, les terres fertiles et productives de cette région bretonne situées dans le secteur de l'ancienne paroisse de Feins-Dingé (Ille-et-Vilaine), interdisent d'attribuer ce non paiement du cens au manque de ressources. La tentation de vivre en grand seigneur l'a peut-être amené à vivre au-dessus de ses véritables moyens seigneuriaux.</p><section id="genealogie-agnatique">
+  <h2>Généalogie agnatique</h2>
+<p>Généalogie considérée sous l'approche agnatique allant à l'essentiel, traversant les âges pour suivre ceux qui transmirent le nom patronymique : Brouillard, depuis des temps non déterminés pour lui adjoindre au passage du XV<sup>e</sup>, XVI<sup>e</sup> et XVII<sup>e</sup> siècles le nom de terre : Broisse.</p>
+
+<!-- Photo avec zoom au survol et ouverture plein écran -->
+  <a href="blazon.jpg" target="_blank">
+    <img src="blazon.jpg" alt="Arbre généalogique" class="genealogie-image" />
+  </a>
+</section>
+
+<style>
+  .genealogie-image {
+    display: block;
+    margin: 40px auto;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    object-fit: cover;
+    object-position: center;
+    clip-path: inset(0.3cm 0.8cm 0.8cm 0.8cm);
+    transition: transform 0.3s ease;
+    cursor: zoom-in !important; }
+
+  .genealogie-image:hover {
+  transform: scale(1.2); /* zoom au survol */
+}
+
+
+/* Curseur loupe uniquement pour les images zoomables et leurs liens parents */
+.zoom-only,
+.zoom-clickable,
+.acte-image,
+a > .zoom-only,
+a > .zoom-clickable,
+a > .acte-image {
+  cursor: zoom-in !important;
+}
+
+/* Curseur main pour les boutons du menu */
+.menu-horizontal a {
+  cursor: pointer !important;
+}
+.ref-link { text-decoration: none; }
+
+</style>
+<section id="contributions-sources">
+    <h2>Contributions et sources</h2>
+    <ul class="sources-list">
+      <li>B.M.S. et registres paroissiaux</li>
+      <li>Archives départementales d’Ille-et-Vilaine, séries 1B, AB, AP, BB, LM, IS</li>
+      <li>Archives "Auld alliance" ref : M.N. Baudouin-Matuszek</li>
+      <li>
+        Kilmarnock
+        <div style="display:inline-block; vertical-align: top; margin-left: 0.5em; font-weight: normal; color: black; font-size: 0.95em; line-height: 1.4em;">
+          597/15 062<br />
+          597/15 065<br />
+          597/15 068
+        </div>
+      </li>
+      <li>Salt Lake City, Banque Internationale de Registres Généalogiques</li>
+      <li>États généraux des fonds : op. cit., tome IV, pp. 145 – 221 (“Chartiers Arrérage Censier”)</li>
+      <li>Annales de l’Ouest, pp. 5 – 49 in plano, cote L.437</li>
+      <li>Dictionnaire de la bibliographie française, B. cote 721</li>
+      <li>Registres appointements du tribunal de Rennes Ft. 8000 F° 78 – C6038 série H</li>
+      <li>Registres paroissiaux 201 E. 1458</li>
+      <li>"La vie rurale en Bretagne à la fin du moyen-âge:1365-1525-1530" – Thèse Hist. Michelle Lebois. Rennes II/1986</li>
+      <li>“Recours administratifs des fiefs et francs fiefs” N 47 F°147 Gallica (in extenso)</li>
+      <li>Registre des lieux et paroisses de Bretagne avant 1796 (C1259 carte F1)</li>
+      <li>Minutes notariales de l’Ouest, Paris – Archives 1e, 3e, 5e, 11e, 13e, 17e</li>
+      <li>La Chenays Desbois et Badier, 3e édition, 1864</li>
+      <li>Photographie couleur Kodak – Gold 800 AS, format class – AG 20 × 30</li>
+      <li>William Steeve Brouillard (Ottawa), professeur d'histoire et contributeur principal</li>
+      <li>Didier Méhu (Laval, Canada), repost de Moodle</li>
+    </ul>
+  </section>
+
+  <!-- Fin de l'insertion -->
+<section id="notes-références">
+  <h2>Notes et références</h2>
+
+  <div class="note" id="ref1">
+    <strong>1.</strong> <a href="https://gallica.bnf.fr/ark:/12148/bpt6k54249441/f134.texteImage" target="_blank" rel="noopener noreferrer">Source BnF : armes d'argent au chevron d'azur</a>
+    <a href="#ref1-link" class="return-link" title="Retour au texte">↩</a>
+  </div>
+
+  <div class="note" id="ref2">
+    <strong>2.</strong> <a href="https://fr.geneawiki.com/wiki/Noblesse_fran%C3%A7aise#:~:text=Le%20syst%C3%A8me%20de,%2C%20page%20121))%C2%A0%3B%20..." target="_blank" rel="noopener noreferrer">Source Geneawiki, sections 8 à 12</a>
+    <a href="#ref2-link" class="return-link" title="Retour au texte">↩</a>
+  </div>
+
+  <div class="note" id="note3">
+    <strong>3.</strong> <a href="https://portail.atilf.fr/cgi-bin/getobject_?p.108:51./var/artfla/encyclopedie/textdata/IMAGE/#:~:text=.%20(A)-,Saisie%20f%C3%A9odale,-Saisie%20f%C3%A9odale%20est" target="_blank" rel="noopener noreferrer">Définition de « Saisie féodale »</a>
+    <a href="#ref3-link" class="return-link" title="Retour au texte">↩</a>
+  </div>
+</section>
+
+ 
+</main>
+
+<button id="btn-top" title="Retour en haut">↑</button>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Références principales
+  const menu = document.getElementById('menu');
+  const menuHorizontal = document.querySelector('.menu-horizontal');
+  const btnTop = document.getElementById('btn-top');
+  const titleSection = document.getElementById('title-section');
+
+  const extraOffset = -10;
+  const startScroll = 0;
+  const endScroll = 400;
+
+  // Fonction pour centrer le menu autour du titre
+  function updateMenuPosition() {
+    const titleRect = titleSection.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+    const centerTitleX = titleRect.left + titleRect.width / 2;
+    const leftPosition = centerTitleX - menuRect.width / 2 + extraOffset;
+    menu.style.left = `${leftPosition}px`;
+  }
+  updateMenuPosition();
+  window.addEventListener('resize', updateMenuPosition);
+
+  // Animation du menu lors du scroll
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    let progress = (scrollY - startScroll) / (endScroll - startScroll);
+    progress = Math.min(Math.max(progress, 0), 1);
+
+    const titleRect = titleSection.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+    const centerTitleX = titleRect.left + titleRect.width / 2;
+    const startLeft = centerTitleX - menuRect.width / 2 + extraOffset;
+    const endLeft = 20;
+    const currentLeft = startLeft + (endLeft - startLeft) * progress;
+    menu.style.left = `${currentLeft}px`;
+
+    // Passage des boutons en colonne à gauche lorsque le menu est traduit
+    if (progress === 1) {
+      menuHorizontal.classList.add('translated');
+      menuHorizontal.style.display = 'flex';
+      menuHorizontal.style.flexDirection = 'column';
+      menuHorizontal.style.alignItems = 'flex-start';
+    } else {
+      menuHorizontal.classList.remove('translated');
+      menuHorizontal.style.display = 'flex';
+      menuHorizontal.style.flexDirection = 'row';
+      menuHorizontal.style.alignItems = 'center';
+    }
+
+    // Affichage/masquage du bouton remonter en haut
+    if (btnTop) {
+      btnTop.style.opacity = scrollY > 300 ? '1' : '0';
+      btnTop.style.pointerEvents = scrollY > 300 ? 'auto' : 'none';
+    }
+  });
+
+  // Boutons du menu pour centrer les sections dans le viewport
+  if (menuHorizontal) {
+    menuHorizontal.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (!targetElement) return;
+
+        const elementTop = targetElement.getBoundingClientRect().top + window.scrollY;
+        const viewportCenter = window.innerHeight / 2;
+        let scrollTo = elementTop - viewportCenter + targetElement.offsetHeight / 2;
+
+        // Ajustements spécifiques pour centrer parfaitement
+        if (targetId === "nom-statut") scrollTo += 90;
+        if (targetId === "acte") scrollTo += 300;
+        if (targetId === "realites-feodalites") scrollTo += 80; 
+        if (targetId === "genealogie-agnatique") scrollTo -= 380;
+
+        window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+      });
+    });
+  }
+
+  // Bouton "remonter en haut"
+  if (btnTop) {
+    btnTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 400);
+    });
+  }
+
+  // Curseur loupe sur les images zoomables
+  document.querySelectorAll('.acte-image').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    if (img.parentElement.tagName === 'A') img.parentElement.style.cursor = 'zoom-in';
+  });
+
+  // Blocage clic droit et ouverture nouvel onglet pour toutes les images "collection privée"
+  document.querySelectorAll('#collection-privee').forEach(img => {
+    // Bloquer clic droit
+    img.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      alert("Clic droit interdit sur cette image !");
+    });
+
+    // Bloquer ouverture dans un nouvel onglet via Ctrl+clic ou molette
+    img.addEventListener('click', e => {
+      if (e.ctrlKey || e.button === 1) {
+        e.preventDefault();
+        alert("Ouverture dans un nouvel onglet interdite !");
+      }
+    });
+  });
+});
+</script>
+<script>
+// Colorer uniquement les mots "Blasonnement" et "Devise" en bleu
+document.addEventListener('DOMContentLoaded', () => {
+  const mots = ["Blasonnement", "Devise"];
+  
+  mots.forEach(mot => {
+    document.querySelectorAll('body *').forEach(el => {
+      if (el.children.length === 0) { // n'affecte que les éléments sans enfants
+        el.innerHTML = el.innerHTML.replace(
+          new RegExp(`\\b(${mot})\\b`, 'g'),
+          `<span style="color: blue;">$1</span>`
+        );
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
