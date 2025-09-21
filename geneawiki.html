@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -11,5 +11,57 @@
       GeneaWiki section 8 à 12
     </a>
   </p>
+</body>
+</html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accès — GeneaWiki (sections 8 à 12)</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; line-height:1.4; color:#222; }
+    .box { max-width:720px; margin:0 auto; }
+    a.button { display:inline-block; margin-top:1rem; padding:.5rem .8rem; background:#2b6; color:#000; text-decoration:none; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Ouvrir GeneaWiki — sections 8 à 12</h1>
+    <p>Tu vas être redirigé·e vers l’extrait demandé sur GeneaWiki. Si la redirection automatique ne fonctionne pas, clique sur le lien de secours.</p>
+
+    <p id="status">Préparation…</p>
+
+    <p>
+      <a id="fallback-link" class="button" href="#" target="_blank" rel="noopener noreferrer">Ouvrir la version de secours (printable / ancre)</a>
+    </p>
+
+    <p style="margin-top:1rem; font-size:0.9rem; color:#555;">
+      Si ton navigateur n'arrive pas à surligner automatiquement le texte, la version de secours te placera dans la section choisie.
+    </p>
+  </div>
+
+<script>
+  // Liens cibles
+  const chromeLink = 'https://fr.geneawiki.com/wiki/Noblesse_fran%C3%A7aise#:~:text=Le%20syst%C3%A8me%20de,%2C%20page%20121))%C2%A0%3B%20...';
+  const printableLink = 'https://fr.geneawiki.com/w/index.php?title=Noblesse_fran%C3%A7aise&printable=yes#Les_charges_anoblissantes';
+
+  // Remplir le lien de secours visible
+  document.getElementById('fallback-link').href = printableLink;
+
+  // Détection basique d'un navigateur Chromium (Chrome, Edge...)
+  const isChromium = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime) && navigator.userAgent.includes('Chrome');
+
+  // Essayer redirection automatique pour Chromium (meilleur support du # :~:text)
+  if (isChromium) {
+    document.getElementById('status').textContent = 'Redirection automatique (Chrome/Edge) en cours…';
+    // remplacer l'URL (remplace l'historique) pour être propre
+    window.location.replace(chromeLink);
+  } else {
+    document.getElementById('status').textContent = 'Redirection automatique non forcée pour votre navigateur. Cliquez sur "Ouvrir la version de secours" si rien ne se passe.';
+    // on laisse l'utilisateur cliquer sur le bouton de secours
+  }
+</script>
 </body>
 </html>
