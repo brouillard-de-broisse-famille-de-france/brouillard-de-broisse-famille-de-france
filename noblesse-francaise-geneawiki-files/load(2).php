@@ -1,0 +1,1 @@
+.fondsaccueil{background:url(https://fr.geneawiki.com/images/5/55/Fonds-Titre.jpg) }.htmlform-tip + .mw-htmlform-field-HTMLInfoField{color:red}label[for=wpCaptchaWord]{color:green;font-weight:bold;font-size:150%;font-style:italic}
